@@ -27,7 +27,7 @@ Instale o framework Streamlit executando o comando abaixo no terminal do seu sis
 
 Bash
 pip install streamlit
-#3. Compilar O Código C++
+## 3. Compilar O Código C++
 O script Python busca especificamente pelo executável estruturas.exe na mesma pasta. Compile o arquivo-fonte em C++ utilizando o comando:
 
 Bash

@@ -1,4 +1,4 @@
-Plaintext
+Markdown
 # Simulador de Estruturas de Dados (Pilha e Fila)
 
 Trabalho desenvolvido para a disciplina de Algoritmos e Estruturas de Dados. O projeto consiste em uma interface gráfica feita em Python (Streamlit) integrada com a lógica de manipulação e alocação dinâmica feita em C++. A comunicação entre o Python e o C++ é feita via linha de comando utilizando a biblioteca `subprocess`.

@@ -4,13 +4,13 @@
 
 using namespace std;
 
-// A estrutura do nó é a mesma para Pilha e Fila (Alocação Dinâmica)
+
 struct No {
-    int Info; // Mudamos para int para alinhar direto com o Streamlit
+    int Info; 
     No *Lig;
 };
 
-// --- OPERAÇÕES DA PILHA (LIFO) ---
+// PILHA
 void Empilha(No* &Topo, int Elemento) {
     No *Aux = new No{Elemento, Topo};
     Topo = Aux;
@@ -24,7 +24,7 @@ bool Desempilha(No* &Topo, int &Valor) {
     return true;
 }
 
-// --- OPERAÇÕES DA FILA (FIFO) ---
+// FILA 
 void InsereFila(No* &Com, No* &Fim, int Novo) {
     No *P = new No{Novo, NULL};
     if (!Com) Com = Fim = P;
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
     }
     arquivoEntrada.close();
 
-    // 2. EXECUTA COMANDOS DO PYTHON
+    // 2. Comandos de Python
     if (comando == "push" && argc >= 4) {
         int val = stoi(argv[3]);
         if (tipo == "fila") InsereFila(Com, Fim, val);
@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
         else Desempilha(Com, descarte);
     }
 
-    // 3. CALCULA ESTATÍSTICAS E SALVA NO ARQUIVO (Tudo em um único loop)
+    // 3. Salva tudo de uma so ves no arquivo
     ofstream arquivoSaida(nomeArquivo);
     string elementos_str = "";
     int tam = 0, soma = 0, menor = 999, maior = -999;
@@ -83,16 +83,15 @@ int main(int argc, char* argv[]) {
         if (valor < menor) menor = valor;
         if (valor > maior) maior = valor;
         
-        // Formata a string para o Python (Inverte a ordem da pilha para exibição visual do topo)
+        // Enverte ordem da pilha para mostrar na vizualização correta.
         if (tipo == "pilha") elementos_str = to_string(valor) + (elementos_str.empty() ? "" : ",") + elementos_str;
         else elementos_str += to_string(valor) + ",";
     }
     arquivoSaida.close();
     if (!elementos_str.empty() && tipo == "fila") elementos_str.pop_back(); // Remove última vírgula da fila
 
-    // 4. ENVIA RESPOSTA PARA O PYTHON
+    // 4. Envia pro Phyton a resposta correta 
     if (tam == 0) cout << "VAZIA|0|0|0|0" << endl;
     else cout << elementos_str << "|" << tam << "|" << soma << "|" << menor << "|" << maior << endl;
 
     return 0;
-}
